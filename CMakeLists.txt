@@ -23,5 +23,5 @@ file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 add_executable(httpserver ${SOURCES})
 
 # Link Boost libraries
-target_link_libraries(httpserver ${Boost_LIBRARIES} pthread rt)
+target_link_libraries(httpserver ${Boost_LIBRARIES} pthread rt boost_system boost_thread boost_chrono)
 
