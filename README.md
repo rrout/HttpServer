@@ -1,18 +1,18 @@
 # HttpServer
 Sample HTTP Server built with boost
 
-# httpserverYourProject/ ├── inc/ │ └── your_headers.h └── src/ └── your_sources.cpp
+# httpserver
 
 ## Overview
-YourProject is a C++ application that uses the Boost library to [briefly describe the purpose or functionality of your project].
+HttpServer is a C++ application that uses the Boost library to Create REST API.
 
 ## Features
-- Feature 1
-- Feature 2
-- Feature 3
+- Native Support of JSON
+- SSL cert support
+- MVC model
 
 ## Folder Structure
-YourProject/ ├── inc/ │ └── your_headers.h └── src/ └── your_sources.cpp
+HttpServer/ ├── inc/ │ └── your_headers.h └── src/ └── your_sources.cpp
 
 
 ## Requirements
@@ -23,59 +23,34 @@ YourProject/ ├── inc/ │ └── your_headers.h └── src/ └─�
 ## Setup and Installation
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
+   git clone https://github.com/rrout/HttpServer
+   cd HttpServer
 
 ## Build The Project
-   mkdir build
-cd build
-cmake ..
-make
-
-give me the same in .md format
-Here's the README.md file content formatted in Markdown:
-
-markdown
-# YourProject
-
-## Overview
-YourProject is a C++ application that uses the Boost library to [briefly describe the purpose or functionality of your project].
-
-## Features
-- Feature 1
-- Feature 2
-- Feature 3
-
-## Folder Structure
-YourProject/ ├── inc/ │ └── your_headers.h └── src/ └── your_sources.cpp
-
-
-## Requirements
-- CMake 3.10 or higher
-- Boost libraries
-- A C++17 compatible compiler
-
-## Setup and Installation
-1. **Clone the repository**:
    ```sh
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
-Build the project:
+   mkdir build
+    cd build
+    cmake ..
+    make
 
-sh
-mkdir build
-cd build
-cmake ..
-make
-Usage
+## Usage
 Describe here how to run and use your project. Provide examples if necessary:
 
-sh
-./YourProject
-Examples
-Provide some example commands and their expected output.
+    ```sh
+    ./httpserver
 
-Contributing
+## Examples
+Provide some example commands and their expected output.
+```sh
+curl http://localhost:8080/apiv1/GetVnet
+curl http://localhost:8080/apiv1/GetVnet?vnetId=abcd
+curl http://localhost:8080/apiv1/GetMapping
+curl http://localhost:8080/apiv1/GetMapping?vnetId=abcd
+curl -X POST -H "Content-Type: application/json" -d '{"vnetId":"01234567-89ab-cdef-0123-456789abcdef","cAddr":"1.1.1.1", "cMac":"1.1.1.1", "pAddr":"1.1.1.1", "pMac":"1.1.1.1"}' http://localhost:8080/apiv1/PutMapping
+curl -X POST -H "Content-Type: application/json" -d '{"vnetId":"01234567-89ab-cdef-0123-456789abcdef"}' http:  //localhost:8080/apiv1/PutVnet
+
+
+## Contributing
 Fork the repository
 
 Create a new branch (git checkout -b feature-branch)
@@ -86,14 +61,13 @@ Push to the branch (git push origin feature-branch)
 
 Create a new Pull Request
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Contact
+## Contact
 If you have any questions, feel free to reach out:
 
-Name: Your Name
+Name: Rashmi Ranjan Rout
 
-Email: youremail@example.com
+Email: rashmiranjan_rout@outlook.com
 
-GitHub: yourusername

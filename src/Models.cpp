@@ -24,9 +24,18 @@ void VentReq::Display() {
     std::cout << "Vnet: " << vnetId << std::endl;
     std::cout << "region: " << region << std::endl;
   }
+ std::string VentReq::Dump() {
+    Display();
+    return "Vent Request  Dumping filtered content \n";
+ }
 std::string VentReq::Process() {
+    help();
     return "Processed";
   }
+std::string VentReq::help() {
+    std::string helpStr = "Example Payload : {\"vnetId\":\"01234567-89ab-cdef-0123-456789abcdef\",\n \"region\":\"India\"}";
+    return helpStr;
+}
 
 
 bool MappingReq::Construct(const std::map<std::string, std::string>& jsonMap) {
@@ -47,10 +56,10 @@ bool MappingReq::Construct(const std::map<std::string, std::string>& jsonMap) {
           if (isValid()) {
               return "MappingReq Processing Success\n";
           } else {
-              return "Invalid Request";
+              return "Invalid Request : " + help();
               display();
           }
-          return "Request processing failed";
+          return help();
       }
       // Display all variables
       void MappingReq::display() const {
@@ -60,9 +69,19 @@ bool MappingReq::Construct(const std::map<std::string, std::string>& jsonMap) {
           std::cout << "pAddr: " << pAddr << "\n";
           std::cout << "pMac: " << pMac << "\n";
       }
+    std::string MappingReq::Dump() {
+        display();
+        return  " MappingReq Dumping Filtered content \n";
+    }
 
       // Validate that all required fields are populated
       bool MappingReq::isValid() const {
           std::cout << "Validating [ MappingReq ] authenticity ....." << std::endl;
           return !vnetId.empty() && !cAddr.empty() && !cMac.empty() && !pAddr.empty() && !pMac.empty();
       }
+std::string MappingReq::help() {
+    std::string helpStr = "Example Payload : {\"vnetId\":\"01234567-89ab-cdef-0123-456789abcdef\",\n \"cAddr\":\"1.1.1.1\", \"cMac\":\"1.1.1.1\", \"pAddr\":\"1.1.1.1\", \"pMac\":\"1.1.1.1\"}";
+    return helpStr;
+}
+
+

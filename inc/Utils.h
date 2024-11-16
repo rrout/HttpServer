@@ -12,6 +12,11 @@
 #include <boost/asio/strand.hpp>
 #include <boost/config.hpp>
 
+#include <boost/beast/core.hpp>
+#include <boost/beast/http.hpp>
+#include <boost/beast/version.hpp>
+#include <boost/algorithm/string.hpp>
+
 namespace beast = boost::beast; // from <boost/beast.hpp>
 namespace http = beast::http;   // from <boost/beast/http.hpp>
 namespace net = boost::asio;    // from <boost/asio.hpp>
@@ -68,6 +73,23 @@ public:
     static bool isValidGUID(const std::string& guid) {
         const std::regex guidRegex("^[{]?[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{12}[}]?$");
         return std::regex_match(guid, guidRegex);
+    }
+
+
+    // Function to parse query string
+    static std::map<std::string, std::string> parse_query(const std::string& query) {
+        std::map<std::string, std::string> query_map;
+        std::vector<std::string> pairs;
+        boost::split(pairs, query, boost::is_any_of("&"));
+        for (const auto& pair : pairs) {
+            size_t pos = pair.find("=");
+            if (pos != std::string::npos) {
+                std::string key = pair.substr(0, pos);
+                std::string value = pair.substr(pos + 1);
+                query_map[key] = value;
+            }
+        }
+        return query_map;
     }
 };
 

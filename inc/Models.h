@@ -18,7 +18,9 @@ public:
     bool isVnetIdValid();
     bool isValid() const;
     void Display();
+    std::string Dump();
     std::string Process();
+    std::string help();
 };
 
 class MappingReq {
@@ -34,7 +36,9 @@ public:
     MappingReq(const std::map<std::string, std::string>& jsonMap);
     std::string Process();
     void display() const;
+    std::string Dump();
     bool isValid() const;
+    std::string help();
 };
 
 #endif
