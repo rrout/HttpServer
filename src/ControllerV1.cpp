@@ -21,6 +21,8 @@ http::response<http::string_body> ControllerV1::handle_request(http::request<htt
         response_message += "POST : /apiv1/GetVnet \n";
         response_message += "POST : /apiv1/PutMapping \n";
         response_message += "GET  : /apiv1/GetMapping \n";
+        response_message += "GET  : /apiv1/GetConfig \n";
+        response_message += "GET  : /apiv1/PutConfig \n";
         response_message += "GET  : /apiv1/help \n";
     } else if (req.method() == http::verb::get && boost::algorithm::starts_with(req.target().to_string(), "/apiv1/GetVnet")) {
         if (req.target() == "/apiv1/GetVnet") {
@@ -59,6 +61,16 @@ http::response<http::string_body> ControllerV1::handle_request(http::request<htt
 
         }
     } else if (req.method() == http::verb::post && req.target() == "/apiv1/PutMapping") {
+        auto jsonMap = Utils::parse_json(req.body());
+        MappingReq request(jsonMap);
+        response_message = request.Process();
+        res.set(http::field::content_type, "application/json");
+    } else if (req.method() == http::verb::post && req.target() == "/apiv1/GetConfig") {
+        auto jsonMap = Utils::parse_json(req.body());
+        MappingReq request(jsonMap);
+        response_message = request.Process();
+        res.set(http::field::content_type, "application/json");
+    } else if (req.method() == http::verb::post && req.target() == "/apiv1/PutConfig") {
         auto jsonMap = Utils::parse_json(req.body());
         MappingReq request(jsonMap);
         response_message = request.Process();

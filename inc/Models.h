@@ -41,4 +41,18 @@ public:
     std::string help();
 };
 
+class ConfigReq {
+public:
+    std::string Cobfig_TenantMode;
+
+    // Construct all variables from jsonMap
+    bool Construct(const std::map<std::string, std::string>& jsonMap);
+    ConfigReq(const std::map<std::string, std::string>& jsonMap);
+    std::string Process();
+    void display() const;
+    std::string Dump();
+    bool isValid() const;
+    std::string help();
+};
+
 #endif
